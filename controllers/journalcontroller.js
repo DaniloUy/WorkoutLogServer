@@ -24,9 +24,9 @@ router.post('/create', validateSession, (req,res) => {
 //router.post('/create',(req,res) => {
     
     const journalEntry = {
-        title: req.body.journal.title,
-        date: req.body.journal.date,
-        entry: req.body.journal.entry,
+        description: req.body.log.description,
+        definition: req.body.log.definition,
+        result: req.body.log.result,
         owner: req.user.id 
     }
     Journal.create(journalEntry)
@@ -45,6 +45,7 @@ router.get("/",(req,res) => {
 router.get("/mine", validateSession, (req,res) => {
 //router.get("/mine", (req,res) => {
     let userid = req.user.id
+    // let userid = req.body.user.email
     Journal.findAll({
       where: {owner: userid}
     })
@@ -65,9 +66,10 @@ router.get("/:title", function (req,res) {
 router.put("/update/:entryId", validateSession, function (req,res) { 
 //router.put("/update/:entryId", function (req,res) {  
     const updateJournalEntry = {
-        title: req.body.journal.title,
-        date: req.body.journal.date,
-        entry: req.body.journal.entry
+        description: req.body.log.description,
+        definition: req.body.log.definition,
+        result: req.body.log.result,
+        // owner: req.user.id 
     };
      
     const query = {where: { id: req.params.entryId, owner: req.user.id }}

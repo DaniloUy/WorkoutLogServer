@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('journal-walkthrough',
+const sequelize = new Sequelize('workout-log',
 'postgres', 'Letmein1234!', {
     host: 'localhost',
     dialect: 'postgres'
@@ -7,7 +7,7 @@ const sequelize = new Sequelize('journal-walkthrough',
 
 sequelize.authenticate().then(
     function() {
-        console.log ("Connected to journal-walkthrough postgres database");
+        console.log ("Connected to workout-log postgres database");
     },
     function(err) {
         console.log(err);
