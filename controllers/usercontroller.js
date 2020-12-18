@@ -2,7 +2,9 @@ const router = require ('express').Router();
 const User = require('../db').import('../models/user');
 const jwt = require("jsonwebtoken");
 // ***** New code
-const bcrypt = require("bcryptjs")
+const bcrypt = require("bcryptjs");
+const { Op } = require("sequelize");
+ 
 ;/***************
   USER SIGNUP
 ***************/
@@ -14,6 +16,7 @@ router.post('/register', function(req,res) {
           email: "user@email.com",
           password: "password1234"
           */
+          name: req.body.user.name, 
           email: req.body.user.email, 
           password: bcrypt.hashSync(req.body.user.password,13)
       })
@@ -40,7 +43,7 @@ router.post('/register', function(req,res) {
 });
 
 /* ******************
- *** USER SIGNIN ***
+ *** USER LOGIN ***
 ********************/
 
 router.post('/login', function(req,res) {
@@ -49,7 +52,13 @@ router.post('/login', function(req,res) {
     User.findOne ({
         where: {
             email: req.body.user.email
-        }
+        } 
+        // where: {
+        //   [Op.or]: [
+        //       {name: req.body.user.name},
+        //       {email: req.body.user.email}
+        //   ]
+        // }      
     })
     // ***** New code
         .then(function loginSuccess(user) {

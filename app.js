@@ -1,17 +1,7 @@
 require('dotenv').config();
 let express = require('express');
 let app = express();
-
-/*
-// *** ADD LINE BELOW
-let journal = require('./controllers/journalcontroller')
-*/
-/*
-//  ***NEW CODE START ***
-app.use('/test', function(reg, res) {
-    res.send('This is a message from the test endpoint on the server!')
-})
-// *** NEW CODE END ***
+const db = require("./db");
 
 app.use('/journal',journal)
 app.listen(3000, function() {
@@ -19,7 +9,7 @@ app.listen(3000, function() {
 })
 */
 
-let sequelize = require ('./db');
+// let sequelize = require ('./db');
  
 //app.use(require('./middleware/headers'));
 let journal = require('./controllers/journalcontroller'); 
@@ -27,7 +17,7 @@ let user = require('./controllers/usercontroller');
 
 // *** ADD 2 LINES BELOW
 sequelize.sync();
-//sequelize.sync({force:true});
+// sequelize.sync({force:true});
 
 // *** ADD LINE BELOW
 app.use(express.json());
@@ -42,8 +32,16 @@ app.use(require('./middleware/validate-session'));
 
 app.use('/journal', journal);
 
-app.listen(3000, function() {
-    console.log("App is listening on port 3000");
-})
+// app.listen(4000, function() {
+//     console.log("App is listening on port 4000");
+// })
+
+db.authenticate()
+  .then(() => db.sync())  // => (force: true)
+  .then(() => {
+    app.listen(process.env.PORT, () => console.log(`[Server: ] App is listening on Port ${process.env.PORT}`));  
+  })
+  .catch((err) => {console.log(err)
+  })
 
 
