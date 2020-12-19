@@ -2,7 +2,7 @@ require('dotenv').config();
 const cors = require('cors');
 let express = require('express');
 let app = express();
-app.use(cors());
+app.use(cors.permission);
 app.options('*', cors());
 const db = require("./db");
 
