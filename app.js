@@ -1,16 +1,10 @@
 require('dotenv').config();
-const cors = require('cors');
+// const cors = require('cors');
 let express = require('express');
 let app = express();
-app.use(cors.permission);
-app.options('*', cors());
+// app.use(cors.permission);
+// app.options('*', cors());
 const db = require("./db");
-
-app.use('/journal',journal)
-app.listen(3000, function() {
-    console.log("App is listening on port 3000");
-})
-*/
 
 // let sequelize = require ('./db');
  
@@ -19,7 +13,7 @@ let journal = require('./controllers/journalcontroller');
 let user = require('./controllers/usercontroller');
 
 // *** ADD 2 LINES BELOW
-sequelize.sync();
+// sequelize.sync();
 // sequelize.sync({force:true});
 
 // *** ADD LINE BELOW
