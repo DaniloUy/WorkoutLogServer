@@ -1,6 +1,8 @@
 require('dotenv').config();
 let express = require('express');
+let cors = require('cors');
 let app = express();
+app.use(cors({credentials: true, origin: true}));
 const db = require("./db");
 
 app.use('/journal',journal)
