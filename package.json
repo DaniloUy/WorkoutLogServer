@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "heroku-postbuild": "webpack -p"
   },
   "author": "author",
   "license": "ISC",
@@ -20,7 +21,8 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.21.1"
+    "sequelize": "^5.21.1",
+    "nodemon": "^1.19.4"
   }
 }
 
