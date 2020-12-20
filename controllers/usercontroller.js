@@ -3,7 +3,7 @@ const User = require('../db').import('../models/user');
 const jwt = require("jsonwebtoken");
 // ***** New code
 const bcrypt = require("bcryptjs");
-const { Op } = require("sequelize");
+// const { Op } = require("sequelize");
  
 ;/***************
   USER SIGNUP
