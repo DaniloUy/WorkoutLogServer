@@ -1,9 +1,6 @@
 require('dotenv').config();
-// const cors = require('cors');
 let express = require('express');
 let app = express();
-// app.use(cors.permission);
-// app.options('*', cors());
 const db = require("./db");
 
 // let sequelize = require ('./db');
@@ -16,10 +13,10 @@ let user = require('./controllers/usercontroller');
 // sequelize.sync();
 // sequelize.sync({force:true});
 
+app.use(require('./middleware/headers'));
 // *** ADD LINE BELOW
 app.use(express.json());
 
-app.use(require('./middleware/headers'));
 /*** Exposed route ***/
 app.use ('/user',user);
 
